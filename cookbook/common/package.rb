@@ -4,7 +4,9 @@ packages = [
   "calibre",
   "git",
   "code",
-  "gh"
+  "gh",
+  "gimp",
+  "gimp-gmic"
 ]
 
 packages.each do |p|
