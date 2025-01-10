@@ -17,7 +17,8 @@ end
 packages = [
   "md.obsidian.Obsidian",
   "com.slack.Slack",
-  "org.torproject.torbrowser-launcher"
+  "org.torproject.torbrowser-launcher",
+  "org.kde.krita"
 ]
 
 packages.each do |p|
