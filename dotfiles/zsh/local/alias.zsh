@@ -9,7 +9,7 @@ alias dc="git diff --cached"
 alias gc="git cherry-pick"
 alias s="git status"
 ## emacs
-alias e="emacs -nw"
+alias e="ef"
 
 # function
 ## function: select_working
@@ -96,3 +96,31 @@ add_with_fzf() {
     echo "$files"
 }
 alias a="add_with_fzf"
+
+## function: f
+## use with other command
+f() {
+    # select a single file
+    local file
+    file=$(fzf --preview "cat {-1}" --preview-window=right:70% --select-1 --exit-0)
+
+    # if no file was selected, exit
+    if [[ -z "$file" ]]; then
+	echo "No file selected." >&2
+	return 1
+    fi
+
+    # output the selected file for the next command
+    echo "$file"
+}
+
+## function: ef
+## open by emacs with fzf
+ef() {
+    local file=$(f)
+    if [[ -z "$file" ]]; then
+	emacs -nw
+    else
+	emacs -nw "$file"
+    fi
+}
