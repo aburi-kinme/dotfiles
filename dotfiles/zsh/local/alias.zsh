@@ -120,7 +120,6 @@ f() {
 ef() {
     local file=$(f)
     if [[ -z "$file" ]]; then
-	emacs -nw
     else
 	emacs -nw "$file"
     fi
