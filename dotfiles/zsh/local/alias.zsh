@@ -1,8 +1,9 @@
 # alias
 ## git
 alias g="git"
-alias au="git add -u"
 alias ap="git add -p"
+alias au="git add -u"
+alias cm="git commit"
 alias co="git checkout"
 alias d="git diff"
 alias dc="git diff --cached"
