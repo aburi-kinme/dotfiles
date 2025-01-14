@@ -1,7 +1,7 @@
 # alias
 ## git
 alias g="git"
-alias a="git add"
+alias au="git add -u"
 alias ap="git add -p"
 alias co="git checkout"
 alias d="git diff"
@@ -50,7 +50,7 @@ select_branch() {
           --prompt="Input: "
    )
 
-   if [[ -n "$branch" ]]; then
+  if [[ -n "$branch" ]]; then
     git checkout "$branch"
   else
     echo "No branch selected"
@@ -70,3 +70,29 @@ cd_with_fzf() {
   fi
 }
 alias c="cd_with_fzf"
+
+## function: ad_with_fzf
+## git add with fzf
+add_with_fzf() {
+    # confirm target is git repo
+    if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+	echo "Not inside a git repository."
+	return 1
+    fi
+
+    local files
+    files=$(git status --short | fzf --multi --preview "git diff --color=always -- {-1}" --preview-window=right:70%)
+
+    if [[ -z "$files" ]]; then
+        echo "No files selected."
+        return 0
+    fi
+
+    local paths
+    paths=($(echo "$files" | awk '{print $2}'))
+    git add -- "${paths[@]}"
+
+    echo "Added the following files:"
+    echo "$files"
+}
+alias a="add_with_fzf"
