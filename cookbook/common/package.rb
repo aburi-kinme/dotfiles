@@ -3,7 +3,6 @@ packages = [
   "fzf",
   "calibre",
   "git",
-  "code",
   "gh",
   "gimp",
   "gimp-gmic"
