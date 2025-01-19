@@ -5,7 +5,8 @@ packages = [
   "git",
   "gh",
   "gimp",
-  "gimp-gmic"
+  "gimp-gmic",
+  "timeshift"
 ]
 
 packages.each do |p|
